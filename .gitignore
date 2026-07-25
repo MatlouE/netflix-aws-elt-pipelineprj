@@ -1,0 +1,35 @@
+# Python virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing and tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environment and secrets
+.env
+.env.*
+*.env
+
+# dbt / data build artifacts
+target/
+dbt_packages/
+logs/
+state/
+
+# OS/editor junk
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
