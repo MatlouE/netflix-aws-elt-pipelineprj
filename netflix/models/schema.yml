@@ -1,0 +1,62 @@
+models:
+  - name: dim_movies
+    description: Dimension table for cleansed movie metadata
+    columns:
+      - name: movie_id
+        description: Primary key for the movie
+        tests:
+          - not_null
+      - name: movie_title
+        description: Standardized movie movie_title
+        tests:
+          - not_null
+      - name: genre_array
+        description: list of genres in array format
+        tests:
+          - not_null
+      - name: genres
+        description: raw genres string from sources
+        tests:
+          - not_null
+
+  - name: dim_users
+    description: Dimension table of unique users from both ratings and tags
+    columns:
+      - name: user_id
+        description: Unique user identifier
+        tests:
+          - unique
+          - not_null
+        
+  - name: dim_genome_tags
+    description: Dimension table of genome tag labels
+    columns:
+      - name: tag_id
+        description: Unique tag ID
+        tests:
+          - unique
+          - not_null
+      - name: tag_name
+        description: cleaned, human-readable tag name
+        tests:
+          - not_null
+
+  - name: fct_ratings
+    description: Fact table of user ratings for movies
+    columns:
+      - name: user_id
+        description: foreign key to dim_users table
+        tests:
+          - not_null
+      - name: movie_id
+        description: foreign key to dim_movies table
+        tests:
+          - not_null
+      - name: rating
+        description: User rating for the movie (1-5)
+        tests:
+          - not_null
+      - name: timestamp
+        description: Timestamp of when the rating was given
+        tests:
+          - not_null
