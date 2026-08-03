@@ -5,6 +5,6 @@ with src_scores as (
 select 
   movie_id,
   tag_id,
-  round(relevance, 4) as relevance
+  round(COALESCE(relevance, 0), 4) as relevance_score
 from src_scores
-where relevance > 0
+where COALESCE(relevance, 0) > 0

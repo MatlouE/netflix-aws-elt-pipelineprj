@@ -3,7 +3,7 @@ with src_movies as(
 )
 select
     movie_id,
-    INITCAP(TRIM(title)) as title,
+    COALESCE(NULLIF(INITCAP(TRIM(title)), ''), 'Unknown Title') as movie_title,
     SPLIT(genres, '|') as genre_array,
     genres
 from src_movies

@@ -16,10 +16,10 @@ scores as (
 
 select
     m.movie_id,
-    m.title,
+    m.movie_title,
     m.genres,
     t.tag_name,
-    s.relevance
+    s.relevance_score
 from movies m
 left join scores s
     on m.movie_id = s.movie_id

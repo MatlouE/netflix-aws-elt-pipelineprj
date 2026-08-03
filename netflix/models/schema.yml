@@ -52,11 +52,39 @@ models:
         description: foreign key to dim_movies table
         tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_movies')
+                field: movie_id
       - name: rating
-        description: User rating for the movie (1-5)
+        description: Users rating for the movie (1-5)
         tests:
           - not_null
-      - name: timestamp
-        description: Timestamp of when the rating was given
+      - name: rating_timestamp
+        description: unix Timestamp of when the rating was made
+        tests:
+          - not_null
+
+  - name: fct_genome_scores
+    description: Fact table of relevance scores per movies and tag
+    columns:
+      - name: movie_id
+        description: foreign key to dim_movies table
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_movies')
+                field: movie_id
+      - name: tag_id
+        description: foreign key to dim_genome_tags table
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_genome_tags')
+                field: tag_id
+      - name: relevance_score
+        description: Relevance score for tags association with the movie (0-1)
         tests:
           - not_null
